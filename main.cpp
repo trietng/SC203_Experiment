@@ -1,12 +1,22 @@
-﻿#include "sort.hpp"
+﻿#include "experiment.hpp"
 #include "output.hpp"
 #include "file.hpp"
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	// int k[] = { 1, 3, 2 };
-	// sort::bubble_sort(k, sizeof(k) / sizeof(int));
-	// file::write_text(k, sizeof(k) / sizeof(int), "result.txt");
+	int sample[] = { 1, 2, 3, 4, 5, 9, 8, 7 };
+	if (argc == 2) {
+		int experiment = atoi(argv[1]);
+		switch (experiment) {
+		case 1:
+			experiment1::run(sample, 8);
+			break;
+		case 2:
+			break;
+		default:
+			break;
+		}
+	}
 	return 0;
 }

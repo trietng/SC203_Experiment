@@ -6,7 +6,7 @@ cmake_minimum_required (VERSION 3.8)
 project ("SC203_Experiment")
 
 # Add source to this project's executable.
-add_executable (SC203_Experiment "main.cpp" "sort.hpp" "output.hpp")
+add_executable (SC203_Experiment "main.cpp" "sort.hpp" "output.hpp" "experiment.hpp" "data.hpp" "experiment.cpp")
 
 # Name of executable
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "experiment")
