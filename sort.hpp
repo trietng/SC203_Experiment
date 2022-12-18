@@ -7,9 +7,14 @@
 namespace sort {
     template <typename T>
     void bubble_sort(T* arr, size_t n) {
-        for (size_t i = 0; i < n - 1; i++) {
+        bool k = true;
+        for (size_t i = 0; (i < n - 1) && (k == true); i++) {
+            k = false;
             for (size_t j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) std::swap(arr[j], arr[j + 1]);
+                if (arr[j] > arr[j + 1]) {
+                    std::swap(arr[j], arr[j + 1]);
+                    k = true;
+                }
             }
         }
     }

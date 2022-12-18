@@ -9,19 +9,26 @@ namespace experiment1 {
     template <typename T>
     class EXPERIMENT {
     private:
-        static inline size_t bubble_count = 0;
-        static inline size_t insertion_count = 0;
+        static inline size_t bubble_assignment = 0;
+        static inline size_t bubble_comparison = 0;
+        static inline size_t bubble_lookup = 0;
+        static inline size_t insertion_assignment = 0;
+        static inline size_t insertion_lookup = 0;
 
         static void bubble_sort(T* arr, size_t n) {
-            for (size_t i = 0; i < n - 1; i++) {
+            bool k = true;
+            for (size_t i = 0; (i < n - 1) && (k == true); i++) {
+                k = false;
                 for (size_t j = 0; j < n - i - 1; j++) {
                     if (arr[j] > arr[j + 1]) {
                         std::swap(arr[j], arr[j + 1]);
-                        bubble_count += 3;
+                        bubble_assignment += 3;
+                        ++bubble_comparison;
+                        k = true;
                     }
-                    ++bubble_count;
+                    ++bubble_lookup;
                 }
-                ++bubble_count;
+                ++bubble_lookup;
             }
         }
 
@@ -31,14 +38,20 @@ namespace experiment1 {
                 T value = arr[i];
                 for (; (j >= 0) && (arr[j] > value); --j) {
                     arr[j + 1] = arr[j];
-                    insertion_count += 2;
+                    insertion_assignment++;
+                    insertion_lookup++;
                 }
                 arr[j + 1] = value;
-                insertion_count += 2;
+                insertion_assignment++;
+                insertion_lookup++;
             }
         }
         static void countOperation(T* arr, size_t n) {
-            bubble_count = insertion_count = 0;
+            bubble_assignment = 0;
+            bubble_comparison = 0;
+            bubble_lookup = 0;
+            insertion_assignment = 0;
+            insertion_lookup = 0;
             bubble_sort(arr, n);
             insertion_sort(arr, n);
         }
@@ -48,7 +61,14 @@ namespace experiment1 {
     template <typename T>
     void run(T* arr, size_t n) {
         EXPERIMENT<T>::countOperation(arr, n);
-        std::cout << EXPERIMENT<T>::bubble_count << " " << EXPERIMENT<T>::insertion_count;
+        std::cout << "Bubble sort: " << EXPERIMENT<T>::bubble_assignment << " assignments, "
+        << EXPERIMENT<T>::bubble_comparison << " comparisons, "
+        << EXPERIMENT<T>::bubble_lookup << " lookups, "
+        << EXPERIMENT<T>::bubble_assignment + EXPERIMENT<T>::bubble_comparison + EXPERIMENT<T>::bubble_lookup << " total";
+        std::cout << "\nInsertion sort: " << EXPERIMENT<T>::insertion_assignment << " assigments, "
+        << "0 comparisons, "
+        << EXPERIMENT<T>::insertion_lookup << " lookups, "
+        << EXPERIMENT<T>::insertion_assignment + EXPERIMENT<T>::insertion_lookup << " total";
     }
 }
 
