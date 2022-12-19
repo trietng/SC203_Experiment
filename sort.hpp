@@ -88,8 +88,36 @@ namespace sort {
     }
 
     template <typename T>
+    size_t partition(T* arr, size_t low, size_t high)
+    {
+        size_t pivot = high;
+        size_t j = low;
+        for (size_t i = low; i < high; ++i) {
+            if (arr[i] < arr[pivot]) {
+                std::swap(arr[i], arr[j]);
+                ++j;
+            }
+        }
+        std::swap(arr[j], arr[pivot]);
+        return j;
+    }
+
+
+    template <typename T>
+    void Qsort(T* arr, size_t low, size_t high)
+    {
+        if (low < high)
+        {
+            size_t pi = partition(arr, low, high);
+            Qsort(arr, low, pi-1);
+            Qsort(arr, pi+1, high);
+        }
+    }
+
+    template <typename T>
     void quick_sort(T* arr, size_t n) {
-        std::qsort(
+        Qsort(arr, 0, n - 1);
+        /*std::qsort(
             arr,
             n,
             sizeof(T),
@@ -101,6 +129,6 @@ namespace sort {
                 if (cmp > 0) return 1;
                 return 0;
             }
-        );
+        );*/
     }
 }
