@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#include <functional>
+#include <chrono>
 
 namespace sort {
     template <typename T>
@@ -130,5 +132,13 @@ namespace sort {
                 return 0;
             }
         );*/
+    }
+
+    template <typename T>
+    long long measure(T* arr, size_t n, std::function<void(T*, size_t)> func) {
+        auto start = std::chrono::high_resolution_clock::now();
+        func(arr, n);
+        auto stop = std::chrono::high_resolution_clock::now();
+        return std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start).count();
     }
 }

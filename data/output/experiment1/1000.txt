@@ -1,0 +1,4 @@
+Bubble sort: 55305 assignments, 18435 comparisons, 482355 lookups, 556095 total
+Execution time: 256900 ns
+Insertion sort: 19434 assigments, 0 comparisons, 19434 lookups, 38868 total
+Execution time: 10100 ns

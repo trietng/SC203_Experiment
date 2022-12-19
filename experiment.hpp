@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <iostream>
+#include <fstream>
 #include <chrono>
 #include "sort.hpp"
 #include "data.hpp"
@@ -14,6 +15,8 @@ namespace experiment1 {
         static inline size_t bubble_lookup = 0;
         static inline size_t insertion_assignment = 0;
         static inline size_t insertion_lookup = 0;
+        static inline long long bubble_exec_time = 0;
+        static inline long long insertion_exec_time = 0;
 
         static void bubble_sort(T* arr, size_t n) {
             bool k = true;
@@ -46,30 +49,50 @@ namespace experiment1 {
                 insertion_lookup++;
             }
         }
-        static void countOperation(T* arr, size_t n) {
+        static void count_operation(T* arr, size_t n) {
             bubble_assignment = 0;
             bubble_comparison = 0;
             bubble_lookup = 0;
             insertion_assignment = 0;
             insertion_lookup = 0;
-            bubble_sort(arr, n);
-            insertion_sort(arr, n);
+            T* tmp0 = new T[n];
+            T* tmp1 = new T[n];
+            memcpy(tmp0, arr, n * sizeof(T));
+            memcpy(tmp1, arr, n * sizeof(T));
+            bubble_sort(tmp0, n);
+            insertion_sort(tmp1, n);
+            delete[] tmp0, tmp1;
         }
-        friend void run<T>(T* arr, size_t n);
+        static void get_execution_time(T* arr, size_t n) {
+            T* tmp0 = new T[n];
+            T* tmp1 = new T[n];
+            memcpy(tmp0, arr, n * sizeof(T));
+            memcpy(tmp1, arr, n * sizeof(T));
+            insertion_exec_time = sort::measure<T>(tmp0, n, &sort::insertion_sort<T>);
+            bubble_exec_time = sort::measure<T>(tmp1, n, & sort::bubble_sort<T>);
+            delete[] tmp0, tmp1;
+        }
+        static void write_result(const char* output) {
+            std::ofstream fout(output);
+            fout << "Bubble sort: " << bubble_assignment << " assignments, "
+            << bubble_comparison << " comparisons, "
+            << bubble_lookup << " lookups, "
+            << bubble_assignment + bubble_comparison + bubble_lookup << " total";
+            fout << "\nExecution time: " << bubble_exec_time << " ns";
+            fout << "\nInsertion sort: " << insertion_assignment << " assigments, "
+            << "0 comparisons, "
+            << insertion_lookup << " lookups, "
+            << insertion_assignment + insertion_lookup << " total";
+            fout << "\nExecution time: " << insertion_exec_time << " ns";
+        }
+        friend void run();
     };
 
-    template <typename T>
-    void run(T* arr, size_t n) {
-        EXPERIMENT<T>::countOperation(arr, n);
-        std::cout << "Bubble sort: " << EXPERIMENT<T>::bubble_assignment << " assignments, "
-        << EXPERIMENT<T>::bubble_comparison << " comparisons, "
-        << EXPERIMENT<T>::bubble_lookup << " lookups, "
-        << EXPERIMENT<T>::bubble_assignment + EXPERIMENT<T>::bubble_comparison + EXPERIMENT<T>::bubble_lookup << " total";
-        std::cout << "\nInsertion sort: " << EXPERIMENT<T>::insertion_assignment << " assigments, "
-        << "0 comparisons, "
-        << EXPERIMENT<T>::insertion_lookup << " lookups, "
-        << EXPERIMENT<T>::insertion_assignment + EXPERIMENT<T>::insertion_lookup << " total";
-    }
+    int* read_text(const char* input, size_t n);
+
+    void generate();
+
+    void run();
 }
 
 namespace experiment2 {
