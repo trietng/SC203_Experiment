@@ -11,10 +11,7 @@ namespace experiment1 {
     class EXPERIMENT {
     private:
         static inline size_t bubble_assignment = 0;
-        static inline size_t bubble_comparison = 0;
-        static inline size_t bubble_lookup = 0;
         static inline size_t insertion_assignment = 0;
-        static inline size_t insertion_lookup = 0;
         static inline long long bubble_exec_time = 0;
         static inline long long insertion_exec_time = 0;
 
@@ -26,12 +23,9 @@ namespace experiment1 {
                     if (arr[j] > arr[j + 1]) {
                         std::swap(arr[j], arr[j + 1]);
                         bubble_assignment += 3;
-                        ++bubble_comparison;
                         k = true;
                     }
-                    ++bubble_lookup;
                 }
-                ++bubble_lookup;
             }
         }
 
@@ -42,19 +36,14 @@ namespace experiment1 {
                 for (; (j >= 0) && (arr[j] > value); --j) {
                     arr[j + 1] = arr[j];
                     insertion_assignment++;
-                    insertion_lookup++;
                 }
                 arr[j + 1] = value;
                 insertion_assignment++;
-                insertion_lookup++;
             }
         }
         static void count_operation(T* arr, size_t n) {
             bubble_assignment = 0;
-            bubble_comparison = 0;
-            bubble_lookup = 0;
             insertion_assignment = 0;
-            insertion_lookup = 0;
             T* tmp0 = new T[n];
             T* tmp1 = new T[n];
             memcpy(tmp0, arr, n * sizeof(T));
@@ -74,15 +63,9 @@ namespace experiment1 {
         }
         static void write_result(const char* output) {
             std::ofstream fout(output);
-            fout << "Bubble sort: " << bubble_assignment << " assignments, "
-            << bubble_comparison << " comparisons, "
-            << bubble_lookup << " lookups, "
-            << bubble_assignment + bubble_comparison + bubble_lookup << " total";
+            fout << "Bubble sort: " << bubble_assignment << " assignments";
             fout << "\nExecution time: " << bubble_exec_time << " ns";
-            fout << "\nInsertion sort: " << insertion_assignment << " assigments, "
-            << "0 comparisons, "
-            << insertion_lookup << " lookups, "
-            << insertion_assignment + insertion_lookup << " total";
+            fout << "\nInsertion sort: " << insertion_assignment << " assigments";
             fout << "\nExecution time: " << insertion_exec_time << " ns";
         }
         friend void run();
