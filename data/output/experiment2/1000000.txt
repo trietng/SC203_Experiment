@@ -1,5 +1,5 @@
 
-Execution time: 13473723800 ns
-Execution time: 763039100 ns
-Execution time: 43647000 ns
-Execution time: 271238800 ns
+Execution time Bubble sort: 13139364800 ns
+Execution time Insertion sort: 731225500 ns
+Execution time Quick sort: 26627400 ns
+Execution time Merge sort: 245981300 ns

@@ -7,7 +7,7 @@ void experiment2::generate(){
 
     std::ofstream fout;
 
-    std::vector<int> vec(1000000, 0);
+    std::vector<int> vec(100000, 0);
 
     generate_sorted(vec.begin(), vec.end(), g);
     shuffle_to_nearly_sorted(vec.begin(), vec.end(), g);
@@ -32,7 +32,7 @@ int* experiment2::read_text(const char* input, size_t n) {
 
 void experiment2::run() {
     int* arr0;
-    int n0 = 1000000;
+    int n0 = 100000;
 
     arr0 = read_text("data/input/experiment2/1000000.txt", n0);
     EXPERIMENT_2<int>::get_execution_time(arr0, n0);

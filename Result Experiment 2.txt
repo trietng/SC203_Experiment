@@ -1,0 +1,29 @@
+1th time:
+Execution time Bubble sort: 13387267000 ns
+Execution time Insertion sort: 730086600 ns
+Execution time Quick sort: 44291400 ns
+Execution time Merge sort: 261963800 ns
+
+2th time:
+Execution time Bubble sort: 13803187000 ns
+Execution time Insertion sort: 759938200 ns
+Execution time Quick sort: 45718900 ns
+Execution time Merge sort: 264804500 ns
+
+3th time:
+Execution time Bubble sort: 13329761000 ns
+Execution time Insertion sort: 727765200 ns
+Execution time Quick sort: 66641900 ns
+Execution time Merge sort: 261000100 ns
+
+4th time:
+Execution time Bubble sort: 12943490800 ns
+Execution time Insertion sort: 716855400 ns
+Execution time Quick sort: 41520700 ns
+Execution time Merge sort: 247436000 ns
+
+5th time:
+Execution time Bubble sort: 13139364800 ns
+Execution time Insertion sort: 731225500 ns
+Execution time Quick sort: 26627400 ns
+Execution time Merge sort: 245981300 ns
