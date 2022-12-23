@@ -78,6 +78,3 @@ namespace experiment1 {
     void run();
 }
 
-namespace experiment2 {
-    void run(int* arr, size_t n);
-}

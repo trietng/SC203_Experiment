@@ -33,9 +33,7 @@ namespace sort {
         }
     }
 
-    template <typename T>
-    class MERGE {
-    private:
+        template <typename T>
         static void merge(T* arr, size_t left, size_t mid, size_t right) {
             size_t l_len = mid - left + 1, r_len = right - mid;
             T* l = new T[l_len];
@@ -73,6 +71,7 @@ namespace sort {
             delete[] r;
         }
         
+        template <typename T>
         static void sort(T* arr, size_t left, size_t right) {
             if (left >= right) return;
             size_t mid = left + ((right - left) / 2);
@@ -81,12 +80,12 @@ namespace sort {
             merge(arr, left, mid, right);
         }
 
-        friend void merge_sort<T>(T* arr, size_t n);
-    };
+
+
 
     template <typename T>
     void merge_sort(T* arr, size_t n) {
-        MERGE<T>::sort(arr, 0, n - 1);
+        sort(arr, 0, n - 1);
     }
 
     template <typename T>

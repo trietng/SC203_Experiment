@@ -69,6 +69,7 @@ void experiment1::run() {
     delete[] arr0, arr1, arr2;
 }
 
-void experiment2::run(int* arr, size_t n) {
-	
-}
+
+
+
+
